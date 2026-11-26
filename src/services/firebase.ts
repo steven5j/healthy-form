@@ -1,36 +1,39 @@
-// 這是 Firebase 前端 SDK 的選用整合模組
-// 如需將表單直接儲存至 Firebase Firestore，請在 .env 中填入對應的 Firebase 專案設定值
+import { initializeApp } from 'firebase/app';
+import { getFirestore, collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import type { HealthFormData } from '../types/form';
 
-export interface FirebaseConfig {
-  apiKey?: string;
-  authDomain?: string;
-  projectId?: string;
-  storageBucket?: string;
-  messagingSenderId?: string;
-  appId?: string;
-}
-
-export const firebaseConfig: FirebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+export const firebaseConfig = {
+  apiKey: "AIzaSyDXCGiZO97wz1arpxGcoe8knpsWJn_gtFE",
+  authDomain: "ytfannie-cute.firebaseapp.com",
+  projectId: "ytfannie-cute",
+  storageBucket: "ytfannie-cute.firebasestorage.app",
+  messagingSenderId: "1034923770888",
+  appId: "1:1034923770888:web:ef65408c3ee0f629c37dbd",
+  measurementId: "G-0FTGBJRX97",
 };
 
-export const isFirebaseConfigured = Boolean(
-  firebaseConfig.apiKey && firebaseConfig.projectId
-);
+// 初始化 Firebase 與 Firestore
+export const app = initializeApp(firebaseConfig);
+export const db = getFirestore(app);
 
-export async function submitHealthForm(data: unknown): Promise<{ success: boolean; id: string }> {
-  // 若未來串接 Firestore，可在此處執行 collection('inquiries').add(...)
-  // 目前預設使用模擬 API 延遲與 LocalStorage 存檔展示
-  await new Promise((resolve) => setTimeout(resolve, 800));
-
+export async function submitHealthForm(data: HealthFormData): Promise<{ success: boolean; id: string }> {
   const inquiryId = 'HF-' + Math.random().toString(36).substring(2, 9).toUpperCase();
-  
-  // 備份到 LocalStorage 便於測試與檢查
+
+  try {
+    // 寫入 Cloud Firestore 的 inquiries 集合
+    await addDoc(collection(db, 'inquiries'), {
+      inquiryId,
+      ...data,
+      status: 'pending', // 諮詢進度：待聯繫
+      createdAt: serverTimestamp(),
+      clientTimestamp: new Date().toISOString(),
+    });
+  } catch (error) {
+    console.error('寫入 Cloud Firestore 失敗:', error);
+    throw error;
+  }
+
+  // 同步備份至 LocalStorage 方便本機離線查閱
   try {
     const history = JSON.parse(localStorage.getItem('healthy_form_submissions') || '[]');
     history.unshift({ id: inquiryId, submittedAt: new Date().toISOString(), data });

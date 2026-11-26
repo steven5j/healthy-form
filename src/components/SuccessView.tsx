@@ -3,6 +3,7 @@ import type { HealthFormData } from '../types/form';
 import { calculateBmi } from '../utils/healthCalculations';
 import { YutianCharacter } from './YutianCharacter';
 import { Calendar, Sparkles, Copy, RotateCcw, Check, HeartHandshake, PhoneCall } from 'lucide-react';
+import consultantImg from '../assets/consultant-yutian.jpg';
 
 interface SuccessViewProps {
   formData: HealthFormData;
@@ -43,12 +44,9 @@ BMI 指標：${bmiInfo.bmi} (${bmiInfo.status})
         <div className="relative mb-2">
           <YutianCharacter expression="cheering" size="lg" />
           <img
-            src="/consultant-yutian.jpg"
+            src={consultantImg}
             alt="健康諮詢師 雨天"
             className="w-12 h-12 rounded-full object-cover border-2 border-white shadow-md absolute -bottom-1 -right-1"
-            onError={(e) => {
-              (e.target as HTMLElement).style.display = 'none';
-            }}
           />
         </div>
 

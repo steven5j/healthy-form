@@ -10,6 +10,7 @@ import { SuccessView } from './components/SuccessView';
 import { ConsultantIntroCard } from './components/ConsultantIntroCard';
 import { YutianCharacter } from './components/YutianCharacter';
 import { submitHealthForm } from './services/firebase';
+import consultantImg from './assets/consultant-yutian.jpg';
 import {
   Heart,
   Shield,
@@ -187,12 +188,9 @@ export function App() {
             <div className="flex items-center gap-2 bg-teal-50/80 border border-teal-200/80 rounded-full py-1 px-3 shadow-2xs">
               <div className="relative">
                 <img
-                  src="/consultant-yutian.jpg"
+                  src={consultantImg}
                   alt="健康諮詢師 雨天"
                   className="w-7 h-7 rounded-full object-cover border border-teal-500"
-                  onError={(e) => {
-                    (e.target as HTMLElement).style.display = 'none';
-                  }}
                 />
                 <span className="w-2 h-2 rounded-full bg-emerald-500 absolute -bottom-0.5 -right-0.5 border border-white"></span>
               </div>

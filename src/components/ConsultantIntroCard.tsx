@@ -1,6 +1,7 @@
 import React from 'react';
 import { YutianCharacter } from './YutianCharacter';
 import { Sparkles, Award } from 'lucide-react';
+import consultantImg from '../assets/consultant-yutian.jpg';
 
 interface ConsultantIntroCardProps {
   currentStep: number;
@@ -45,13 +46,9 @@ export const ConsultantIntroCard: React.FC<ConsultantIntroCardProps> = ({ curren
           <div className="relative">
             {/* 真人照片頭像 */}
             <img
-              src="/consultant-yutian.jpg"
+              src={consultantImg}
               alt="健康諮詢師 雨天"
               className="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover border-3 border-teal-500 shadow-md"
-              onError={(e) => {
-                // 如果找不到圖片則隱藏
-                (e.target as HTMLElement).style.display = 'none';
-              }}
             />
             {/* 認證小徽章 */}
             <span className="absolute -bottom-1 -right-1 bg-teal-600 text-white p-1 rounded-full shadow-xs" title="專業認證">
