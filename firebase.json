@@ -14,7 +14,7 @@
     ],
     "headers": [
       {
-        "source": "**/*.@(html|json)",
+        "source": "/",
         "headers": [
           {
             "key": "Cache-Control",
@@ -23,7 +23,16 @@
         ]
       },
       {
-        "source": "**/*.@(js|css|svg|png|jpg|jpeg|webp|woff2)",
+        "source": "**/*.html",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache, no-store, must-revalidate"
+          }
+        ]
+      },
+      {
+        "source": "/assets/**",
         "headers": [
           {
             "key": "Cache-Control",
