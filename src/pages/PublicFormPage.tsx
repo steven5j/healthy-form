@@ -11,7 +11,6 @@ import { SuccessView } from '../components/SuccessView';
 import { ConsultantIntroCard } from '../components/ConsultantIntroCard';
 import { YutianCharacter } from '../components/YutianCharacter';
 import { ConsultantAvatar } from '../components/ConsultantAvatar';
-import { submitHealthForm } from '../services/firebase';
 import {
   Heart,
   Shield,
@@ -139,6 +138,7 @@ export function PublicFormPage() {
   const handleSubmit = async () => {
     setIsSubmitting(true);
     try {
+      const { submitHealthForm } = await import('../services/firebase');
       const res = await submitHealthForm(formData);
       if (res.success) {
         localStorage.removeItem(STORAGE_KEY);
