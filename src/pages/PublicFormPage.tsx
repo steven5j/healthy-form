@@ -10,8 +10,8 @@ import { Step5Review } from '../components/Step5Review';
 import { SuccessView } from '../components/SuccessView';
 import { ConsultantIntroCard } from '../components/ConsultantIntroCard';
 import { YutianCharacter } from '../components/YutianCharacter';
+import { ConsultantAvatar } from '../components/ConsultantAvatar';
 import { submitHealthForm } from '../services/firebase';
-import consultantImg from '../assets/consultant-yutian.jpg';
 import {
   Heart,
   Shield,
@@ -188,14 +188,7 @@ export function PublicFormPage() {
           {/* 右側：健康諮詢師 雨天 資訊徽章 */}
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-2 bg-teal-50/80 border border-teal-200/80 rounded-full py-1 px-3 shadow-2xs">
-              <div className="relative">
-                <img
-                  src={consultantImg}
-                  alt="健康諮詢師 雨天"
-                  className="w-7 h-7 rounded-full object-cover border border-teal-500"
-                />
-                <span className="w-2 h-2 rounded-full bg-emerald-500 absolute -bottom-0.5 -right-0.5 border border-white"></span>
-              </div>
+              <ConsultantAvatar size="sm" showOnlineDot />
               <div className="text-left text-xs">
                 <span className="font-bold text-teal-800 block leading-tight">諮詢師：雨天</span>
                 <span className="text-[10px] text-teal-600 leading-tight">專屬在線服務</span>

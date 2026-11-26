@@ -2,8 +2,8 @@ import React from 'react';
 import type { HealthFormData } from '../types/form';
 import { calculateBmi } from '../utils/healthCalculations';
 import { YutianCharacter } from './YutianCharacter';
+import { ConsultantAvatar } from './ConsultantAvatar';
 import { Calendar, Sparkles, Copy, RotateCcw, Check, HeartHandshake, PhoneCall } from 'lucide-react';
-import consultantImg from '../assets/consultant-yutian.jpg';
 
 interface SuccessViewProps {
   formData: HealthFormData;
@@ -43,11 +43,9 @@ BMI 指標：${bmiInfo.bmi} (${bmiInfo.status})
       <div className="flex flex-col items-center justify-center mb-4">
         <div className="relative mb-2">
           <YutianCharacter expression="cheering" size="lg" />
-          <img
-            src={consultantImg}
-            alt="健康諮詢師 雨天"
-            className="w-12 h-12 rounded-full object-cover border-2 border-white shadow-md absolute -bottom-1 -right-1"
-          />
+          <div className="absolute -bottom-1 -right-1">
+            <ConsultantAvatar size="md" />
+          </div>
         </div>
 
         <div className="inline-flex items-center gap-1.5 bg-teal-50 border border-teal-200 text-teal-800 text-xs px-3 py-1 rounded-full font-medium mb-2">

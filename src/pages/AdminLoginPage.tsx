@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { YutianCharacter } from '../components/YutianCharacter';
-import consultantImg from '../assets/consultant-yutian.jpg';
+import { ConsultantAvatar } from '../components/ConsultantAvatar';
 import { ShieldCheck, ArrowLeft, Loader2, Heart } from 'lucide-react';
 
 export const AdminLoginPage = () => {
@@ -60,11 +60,9 @@ export const AdminLoginPage = () => {
         <div className="flex flex-col items-center justify-center mb-4">
           <div className="relative mb-2">
             <YutianCharacter expression="greeting" size="md" />
-            <img
-              src={consultantImg}
-              alt="雨天"
-              className="w-10 h-10 rounded-full object-cover border-2 border-white shadow-md absolute -bottom-1 -right-1"
-            />
+            <div className="absolute -bottom-1 -right-1">
+              <ConsultantAvatar size="sm" />
+            </div>
           </div>
           <div className="flex items-center gap-1.5 text-xs text-teal-800 bg-teal-50 border border-teal-200 px-3 py-1 rounded-full font-bold">
             <Heart className="w-3.5 h-3.5 fill-teal-600 text-teal-600" />

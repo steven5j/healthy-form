@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { subscribeToInquiries } from '../services/firebase';
 import type { InquiryRecord, InquiryStatus } from '../types/inquiry';
 import { InquiryDetailModal } from '../components/admin/InquiryDetailModal';
-import consultantImg from '../assets/consultant-yutian.jpg';
+import { ConsultantAvatar } from '../components/ConsultantAvatar';
 import {
   Search,
   Download,
@@ -149,14 +149,7 @@ export const AdminDashboardPage = () => {
       <header className="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-2xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="relative">
-              <img
-                src={consultantImg}
-                alt="雨天"
-                className="w-9 h-9 rounded-full object-cover border-2 border-teal-500 shadow-xs"
-              />
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 absolute -bottom-0.5 -right-0.5 border-2 border-white"></span>
-            </div>
+            <ConsultantAvatar size="md" showOnlineDot />
             <div>
               <div className="flex items-center gap-2">
                 <h1 className="text-base sm:text-lg font-bold text-slate-800 m-0">活力健診</h1>
